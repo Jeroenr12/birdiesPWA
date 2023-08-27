@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./services/firebase";
+import 'react-tabs/style/react-tabs.css';
+import {BirdProvider} from "./contexts/birdContext";
+import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import {ViewBirdPage} from "./pages/ViewBirdPage";
+import {MakeBirdPage} from "./pages/MakeBirdPage";
+
+
+function ProvidedApp(){
+  return(
+    <div className="max-w-100">
+        <h1 className="text-center fs-1">Birds</h1>
+      <Tabs>
+        <TabList>
+            <Tab>View birds</Tab>
+            <Tab>Make birds</Tab>
+        </TabList>
+        <TabPanel>
+            <ViewBirdPage/>
+        </TabPanel>
+        <TabPanel>
+            <MakeBirdPage/>
+        </TabPanel>
+      </Tabs>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BirdProvider>
+        <ProvidedApp/>
+    </BirdProvider>
   );
 }
 
